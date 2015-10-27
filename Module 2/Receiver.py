@@ -10,7 +10,7 @@ def receiver(inp_X1, inp_X2, inpSize_X1, inpSize_X2, H):
     for i in range(inpSize_X2):
         for j in range(len(inp_X2[i])):
             inp_X2[i][j] /= (2**8)
-
+    
     tempH = numpy.linalg.inv((numpy.matrix.transpose(H)*H)) * numpy.matrix.transpose(H)
 
     tempY1 = []
@@ -18,16 +18,14 @@ def receiver(inp_X1, inp_X2, inpSize_X1, inpSize_X2, H):
 
     for i in xrange(len(inp_X1)):
         for j in xrange(len(inp_X1[i])):
-            t = inp_X1[i][j].tolist()
-            tempY1.append(t[0][0])
+            tempY1.append(inp_X1[i][j])
 
     for i in xrange(len(inp_X2)):
         for j in xrange(len(inp_X2[i])):
-            t = inp_X2[i][j].tolist()
-            tempY2.append(t[0][0])
-
+            tempY2.append(inp_X2[i][j])
+    
     tempY = numpy.matrix([tempY1, tempY2])
-
+    
     tempX = tempH * tempY
     tempX = tempX.tolist()
     
